@@ -84,7 +84,7 @@ header > h1 { margin: 0; font-size: 1.2rem; }
 header a { color: #EFEFFE; }
 header a:hover { color: #FFF; }
 
-section#content { padding: 2vw 3vw; max-width: 60%; }
+section#content { padding: 2vw 3vw; /*max-width: 60%;*/ }
 
 /*<div class="footnote">
 <hr>
