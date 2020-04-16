@@ -1,6 +1,10 @@
 __pycache__/
+env/
+venv/
+.*venv/
 *.py[cod]
 *.ini
+Makefile
 
 content/
 static/media/
