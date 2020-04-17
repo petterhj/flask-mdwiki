@@ -13,7 +13,7 @@ config = {
     'FLATPAGES_EXTENSION': '.md',
     'FLATPAGES_MARKDOWN_EXTENSIONS': [
         'codehilite', 'fenced_code', 'footnotes', 
-        'attr_list', 'tables'
+        'attr_list', 'tables', 'pymdownx.tilde'
     ],
 }
 
