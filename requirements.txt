@@ -1,4 +1,5 @@
 flask
+Markdown>=3.2
 Flask-FlatPages
 Pygments
 pymdown-extensions
