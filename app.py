@@ -1,35 +1,13 @@
 # Imports
 from flask import Flask, render_template
 from flask_flatpages import FlatPages, pygments_style_defs, pygmented_markdown
-
-
-# Config
-config = {
-    'DEBUG': True,
-    'FLATPAGES_AUTO_RELOAD': True,
-    'FLATPAGES_ROOT': 'content/',
-    'FLATPAGES_CONTENT_URL': '',
-    'FLATPAGES_MEDIA_URL': '/static/media',
-    'FLATPAGES_EXTENSION': '.md',
-    'FLATPAGES_PYGMENTS_STYLE': 'monokai',
-    'FLATPAGES_MARKDOWN_EXTENSIONS': [
-        'codehilite', 'fenced_code', 'footnotes', 
-        'attr_list', 'tables', 'pymdownx.tilde'
-    ],
-}
-
-
-# HTML renderer
-def custom_renderer(body, fp_instance, page):
-    body = body.replace('%CONTENT_URL%', config.get('FLATPAGES_CONTENT_URL'))
-    body = body.replace('%MEDIA_URL%', config.get('FLATPAGES_MEDIA_URL'))
-    return pygmented_markdown(body, flatpages=fp_instance)
-config.update({'FLATPAGES_HTML_RENDERER': custom_renderer})
+from renderer import custom_renderer
 
 
 # App
 app = Flask(__name__)
-app.config.update(config)
+app.config.from_envvar('CONFIGURATION_FILE')
+app.config.update({'FLATPAGES_HTML_RENDERER': custom_renderer})
 pages = FlatPages(app)
 
 
@@ -49,5 +27,9 @@ def page(path):
 # Route: Pygments style definition
 @app.route('/pygments.css')
 def pygments_css():
-    pygments_style = config.get('FLATPAGES_PYGMENTS_STYLE', 'default')
+    pygments_style = app.config.get('FLATPAGES_PYGMENTS_STYLE', 'default')
     return pygments_style_defs(pygments_style), 200, {'Content-Type': 'text/css'}
+
+
+if __name__ == '__main__':
+    app.run()
