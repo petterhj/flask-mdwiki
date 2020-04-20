@@ -11,6 +11,7 @@ config = {
     'FLATPAGES_CONTENT_URL': '',
     'FLATPAGES_MEDIA_URL': '/static/media',
     'FLATPAGES_EXTENSION': '.md',
+    'FLATPAGES_PYGMENTS_STYLE': 'monokai',
     'FLATPAGES_MARKDOWN_EXTENSIONS': [
         'codehilite', 'fenced_code', 'footnotes', 
         'attr_list', 'tables', 'pymdownx.tilde'
@@ -48,4 +49,5 @@ def page(path):
 # Route: Pygments style definition
 @app.route('/pygments.css')
 def pygments_css():
-    return pygments_style_defs('monokai'), 200, {'Content-Type': 'text/css'}
+    pygments_style = config.get('FLATPAGES_PYGMENTS_STYLE', 'default')
+    return pygments_style_defs(pygments_style), 200, {'Content-Type': 'text/css'}

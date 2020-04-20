@@ -46,12 +46,20 @@ caption, th, td {
     padding: 0 10px;
 }
 
-pre { padding: 20px; }
+pre { 
+    padding: 10px; 
+}
 code { 
     background: #EFEFEF;
     color: #333;
     padding: 0px 4px; 
 }
+pre code { 
+    padding: 0;
+    background: transparent;
+    color: inherit;
+}
+
 blockquote {
     font-style: italic;
     margin: 0 0 1em 15px;
