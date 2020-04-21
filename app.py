@@ -1,6 +1,6 @@
 # Imports
 from flask import Flask, render_template
-from flask_flatpages import FlatPages, pygments_style_defs, pygmented_markdown
+from flask_flatpages import FlatPages, pygments_style_defs
 from renderer import custom_renderer
 
 
